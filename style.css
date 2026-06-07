@@ -1,0 +1,272 @@
+/* ======================================== RESET ======================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #010204;
+    font-family: 'Courier New', monospace;
+}
+
+/* ======================================== LANGIT MALAM (HITAM-BIRU TUA CERAH) ======================================= */
+.sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        #0a0a1a 0%, 
+        #0d1020 20%,
+        #101525 40%,
+        #141830 60%,
+        #1a1f35 80%,
+        #1f2540 100%
+    );
+    z-index: 1;
+}
+
+/* Bulan Bersinar Cerah */
+.moon {
+    position: absolute;
+    top: 10%;
+    left: 12%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #ffffe0 0%, #ffffcc 40%, rgba(255,255,200,0.3) 60%, transparent 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 100px 30px rgba(255,255,220,0.5);
+    z-index: 2;
+    animation: moon-glow 3s ease-in-out infinite;
+}
+
+@keyframes moon-glow {
+    0%, 100% { box-shadow: 0 0 100px 30px rgba(255,255,220,0.5); }
+    50% { box-shadow: 0 0 120px 40px rgba(255,255,220,0.6); }
+}
+
+/* Bintang */
+.star {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+    animation: star-twinkle 2s infinite alternate;
+}
+
+@keyframes star-twinkle {
+    0% { opacity: 0.3; transform: scale(0.7); box-shadow: 0 0 2px white; }
+    100% { opacity: 1; transform: scale(1.3); box-shadow: 0 0 6px white, 0 0 10px rgba(255,255,255,0.5); }
+}
+
+/* ======================================== KONSTELASI SCORPION ======================================= */
+.constellation {
+    position: absolute;
+    top: 10%;
+    right: 20%;
+    width: 250px;
+    height: 220px;
+    z-index: 5;
+}
+
+.scorp-star {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px 3px rgba(255,255,255,0.8);
+    animation: scorp-star-glow 1.5s infinite alternate;
+}
+
+@keyframes scorp-star-glow {
+    0% { opacity: 0.6; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1.15); }
+}
+
+/* Antares (Bintang Merah) */
+.antares {
+    position: absolute;
+    top: 100px;
+    left: 85px;
+    width: 14px;
+    height: 14px;
+    background: #ff3333;
+    border-radius: 50%;
+    box-shadow: 0 0 35px 10px rgba(255,51,51,0.8);
+    animation: antares-pulse 1s infinite alternate;
+    z-index: 6;
+}
+
+@keyframes antares-pulse {
+    0% { opacity: 0.7; transform: scale(0.9); box-shadow: 0 0 30px 8px rgba(255,51,51,0.7); }
+    100% { opacity: 1; transform: scale(1.4); box-shadow: 0 0 50px 15px rgba(255,51,51,0.9); }
+}
+
+/* Posisi Bintang Scorpion */
+.s1 { top: 190px; left: 30px; width: 7px; height: 7px; }
+.s2 { top: 165px; left: 45px; width: 6px; height: 6px; }
+.s3 { top: 145px; left: 55px; width: 5px; height: 5px; }
+.s4 { top: 125px; left: 65px; width: 6px; height: 6px; }
+.s5 { top: 105px; left: 80px; width: 7px; height: 7px; }
+.s6 { top: 85px; left: 100px; width: 5px; height: 5px; }
+.s7 { top: 75px; left: 130px; width: 5px; height: 5px; }
+.s8 { top: 95px; left: 155px; width: 5px; height: 5px; }
+.s9 { top: 60px; left: 175px; width: 4px; height: 4px; }
+
+/* Garis Penghubung */
+.scorp-line {
+    position: absolute;
+    background: linear-gradient(90deg, rgba(255,255,255,0.5), rgba(255,255,255,0.15));
+    height: 1px;
+}
+
+.l1 { top: 193px; left: 33px; width: 25px; transform: rotate(65deg); }
+.l2 { top: 168px; left: 48px; width: 22px; transform: rotate(62deg); }
+.l3 { top: 148px; left: 58px; width: 25px; transform: rotate(60deg); }
+.l4 { top: 128px; left: 68px; width: 28px; transform: rotate(55deg); }
+.l5 { top: 108px; left: 83px; width: 38px; transform: rotate(40deg); }
+.l6 { top: 88px; left: 103px; width: 35px; transform: rotate(55deg); }
+.l7 { top: 80px; left: 85px; width: 55px; transform: rotate(10deg); }
+.l8 { top: 68px; left: 157px; width: 25px; transform: rotate(55deg); }
+
+/* Teks Scorpion */
+.constellation-label {
+    position: absolute;
+    top: 45%;
+    right: 5%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 10;
+}
+
+.pointer-arrow {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
+    position: relative;
+}
+
+.pointer-arrow::after {
+    content: '';
+    position: absolute;
+    right: -2px;
+    top: -4px;
+    border-left: 8px solid rgba(255,255,255,0.8);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+.label-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    letter-spacing: 6px;
+    font-weight: 500;
+    text-shadow: 0 0 20px rgba(255,255,255,0.5);
+}
+
+/* ======================================== MANUSIA HITAM ======================================= */
+.human-container {
+    position: absolute;
+    bottom: 25%;
+    left: 45%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 420px;
+    z-index: 15;
+}
+
+.human-container svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.7));
+    animation: human-breathe 4s ease-in-out infinite;
+}
+
+@keyframes human-breathe {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* ======================================== POHON HITAM ======================================= */
+.tree-container {
+    position: absolute;
+    bottom: 25%;
+    left: 15%;
+    width: 140px;
+    height: 340px;
+    z-index: 14;
+}
+
+.tree-container svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6));
+}
+
+.tree-leaves {
+    animation: leaves-sway 5s ease-in-out infinite;
+    transform-origin: center bottom;
+}
+
+@keyframes leaves-sway {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(2.5deg); }
+    75% { transform: rotate(-2.5deg); }
+}
+
+/* ======================================== BUKIT & RUMPUT HITAM LEBAT (GERAK SEPERTI DAUN) ======================================= */
+.hill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(to bottom, #050a05 0%, #030603 50%, #020402 100%);
+    z-index: 20;
+    border-top: 3px solid #0a150a;
+}
+
+.grass-field {
+    position: absolute;
+    top: -15px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+}
+
+/* Rumput Hitam Lebat - GERAK SEPERTI DAUN */
+.grass-blade {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(to top, #000000 0%, #050505 30%, #0a0a0a 60%, #151515 100%);
+    border-radius: 50% 50% 0 0;
+    transform-origin: bottom center;
+    animation: grass-sway-leaves 5s ease-in-out infinite;
+}
+
+/* Animasi rumput seperti daun pohon - goyangan lembut */
+@keyframes grass-sway-leaves {
+    0% { transform: rotate(0deg) skewX(0deg); }
+    20% { transform: rotate(2deg) skewX(3deg); }
+    40% { transform: rotate(1deg) skewX(1deg); }
+    60% { transform: rotate(-2deg) skewX(-3deg); }
+    80% { transform: rotate(-1deg) skewX(-1deg); }
+    100% { transform: rotate(0deg) skewX(0deg); }
+}
+
+/* Caption */
+.caption {
+    position: absolute;
+    bottom: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.15);
+    font-size: 9px;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    z-index: 30;
+}
